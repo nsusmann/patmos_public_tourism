@@ -24,3 +24,9 @@ GitHub Pages serves the site from the `main` branch and repository root. The lan
 ## Data availability
 
 The original and intermediate datasets are intentionally retained outside this public repository.
+
+## Ownership and permitted use
+
+All data presented on these interfaces is owned by Dr. Natalie M. Susmann and should not be reproduced without my permission. I am sharing these interfaces solely for the purposes of an educational demonstration. This is not a public-facing visualization tool, and for this reason I am not providing any supporting context about the contents of this dataset, nor the larger purpose of the tool.
+
+**Copyright September 20, 2026. Dr. Natalie M. Susmann. Brandeis Design and Innovation.**
