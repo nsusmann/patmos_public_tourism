@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patmos Tourism Review Analysis</title>
+  <style>
+    :root { color-scheme: light; --ink:#17202a; --muted:#667085; --line:#d9dee7; --paper:#f6f3ed; --card:#fff; --accent:#264b73; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--paper); font:17px/1.55 Georgia, "Times New Roman", serif; }
+    main { width:min(960px, calc(100% - 36px)); margin:0 auto; padding:72px 0 80px; }
+    h1 { margin:0 0 14px; font-size:clamp(2.2rem, 6vw, 4.5rem); line-height:1.02; letter-spacing:-.035em; font-weight:600; }
+    .intro { max-width:760px; margin:0 0 46px; color:#3f4854; font-size:1.12rem; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    a.card { display:block; min-height:190px; padding:26px; color:inherit; text-decoration:none; background:var(--card); border:1px solid var(--line); border-radius:10px; box-shadow:0 3px 14px rgba(23,32,42,.05); }
+    a.card:hover, a.card:focus-visible { border-color:var(--accent); transform:translateY(-2px); }
+    .number { color:var(--accent); font:600 .78rem/1.2 Arial,sans-serif; letter-spacing:.12em; text-transform:uppercase; }
+    h2 { margin:14px 0 8px; font-size:1.45rem; }
+    p { margin:0; }
+    footer { margin-top:42px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font: .88rem/1.5 Arial,sans-serif; }
+    @media (max-width:680px) { main{padding-top:42px}.grid{grid-template-columns:1fr}a.card{min-height:0} }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Patmos Tourism Review Analysis</h1>
+  <p class="intro">Public research interfaces for a coded corpus of visitor accounts from the Cave of the Apocalypse and the Monastery of Saint John the Theologian.</p>
+  <section class="grid" aria-label="Research interfaces">
+    <a class="card" href="dashboard.html"><span class="number">Interface 01</span><h2>Analytic dashboard</h2><p>Explore codes, filters, prevalence, and cross-tabulations across the review corpus.</p></a>
+    <a class="card" href="anthology.html"><span class="number">Interface 02</span><h2>Quotable anthology</h2><p>Read selected passages organized by interpretive theme and coded review ID.</p></a>
+    <a class="card" href="dossiers.html"><span class="number">Interface 03</span><h2>Reading dossiers</h2><p>Examine thematic cohorts and their supporting review passages.</p></a>
+    <a class="card" href="graphs.html"><span class="number">Interface 04</span><h2>Chapter graphs</h2><p>View and export figures prepared for the chapter analysis.</p></a>
+  </section>
+  <footer>The public site contains pseudonymous review IDs, quotations, and analytic codes. Original spreadsheets and direct reviewer identifiers are not distributed.</footer>
+</main>
+</body>
+</html>

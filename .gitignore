@@ -1,0 +1,22 @@
+# Never publish source or intermediate review data.
+*.xlsx
+*.xls
+*.csv
+*.tsv
+*.json
+*.jsonl
+*.docx
+
+# Translation and local working artifacts.
+translation_*
+translated_*
+__pycache__/
+*.pyc
+*.bak*
+_conversation_archive/
+
+# Local/editor files.
+.DS_Store
+Thumbs.db
+.vscode/
+*.code-workspace
