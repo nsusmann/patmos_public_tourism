@@ -1,5 +1,9 @@
 # Patmos Tourism Review Analysis
 
+[Open the public-facing Patmos Tourism Review Analysis](https://nsusmann.github.io/patmos_public_tourism/)
+
+Use the link above to open the published landing page and choose an interface. You do not need to download or open the HTML files manually.
+
 This repository publishes four browser-based research interfaces:
 
 - Analytic dashboard
@@ -11,7 +15,11 @@ The public files contain pseudonymous review IDs, quotations, ratings, platform 
 
 ## GitHub Pages
 
-Publish this repository from the `main` branch and the repository root. The landing page is `index.html`.
+The published site is available at:
+
+**https://nsusmann.github.io/patmos_public_tourism/**
+
+GitHub Pages serves the site from the `main` branch and repository root. The landing page is `index.html`.
 
 ## Data availability
 

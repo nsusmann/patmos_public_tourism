@@ -64,6 +64,23 @@ td.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#374151}
 .k-meta{background:#f3f4f6;color:#6b7280;border-color:#d1d5db}
 .legend-bar{display:flex;gap:14px;font-size:11px;color:#6b7280;margin-top:6px;flex-wrap:wrap;align-items:center}
 .legend-bar .lbl{display:flex;align-items:center;gap:4px}
+.collapsible-card{padding:0;overflow:hidden}
+.collapsible-header{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;border:0;border-bottom:1px solid #e5e7eb;background:rgba(255,255,255,.55);color:#111827;cursor:pointer;text-align:left;font-family:inherit}
+.collapsible-header:hover{background:rgba(249,250,251,.85)}
+.collapsible-header:focus-visible{outline:3px solid #93c5fd;outline-offset:-3px}
+.collapsible-title{font-size:20px;font-weight:600;line-height:1.3}
+.collapsible-state{color:#6b7280;font-size:12px;font-weight:600;white-space:nowrap}
+.collapsible-state::before{content:'▾';display:inline-block;margin-right:6px;font-size:14px;transition:transform .15s ease}
+.collapsible-card.is-collapsed .collapsible-state::before{transform:rotate(-90deg)}
+.collapsible-content{padding:18px}
+.collapsible-content.universe-controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.collapsible-content[hidden]{display:none!important}
+.prevalence-category{margin:16px 0;border:1px solid #e5e7eb;border-radius:7px;overflow:hidden;background:#fff}
+.prevalence-category summary{padding:10px 12px;background:#f9fafb;color:#374151;font-size:16px;font-weight:600;cursor:pointer;user-select:none}
+.prevalence-category summary:hover{background:#f3f4f6}
+.prevalence-category summary:focus-visible{outline:3px solid #93c5fd;outline-offset:-3px}
+.prevalence-category>div{padding:8px 12px 0}
+.prevalence-category>table{margin:0}
 </style>
 </head><body><div class="container">
 <h1>Patmos Chapter Dashboard <span style="color:#9ca3af;font-weight:400;font-size:16px">v1.3</span></h1>
@@ -721,9 +738,9 @@ function buildPrevalenceTables(){
   let html = '';
   for(const sec of sections){
     const blurb = SECTION_BLURBS[sec.title] || '';
-    html += '<h3 style="margin-bottom:2px">' + escHtml(sec.title) + '</h3>';
+    html += '<details class="prevalence-category" open><summary>' + escHtml(sec.title) + '</summary>';
     if(blurb){
-      html += '<div style="color:#6b7280;font-size:13px;font-style:italic;margin:0 0 10px 2px">' + escHtml(blurb) + '</div>';
+      html += '<div style="color:#6b7280;font-size:13px;font-style:italic">' + escHtml(blurb) + '</div>';
     }
     html += '<table><thead><tr><th>Code</th><th class="num">Total</th><th class="num">% all</th><th class="num">Cave</th><th class="num">% cave</th><th class="num">Mon.</th><th class="num">% mon.</th></tr></thead><tbody>';
     for(const item of sec.items){
@@ -744,7 +761,7 @@ function buildPrevalenceTables(){
         }
       }
     }
-    html += '</tbody></table>';
+    html += '</tbody></table></details>';
   }
   root.innerHTML = html;
 }
@@ -799,6 +816,41 @@ buildPrevalenceTables();
   focus.forEach(function(f){ft+='<tr><td>'+f[0]+'</td><td style="text-align:right">'+f[1]+'</td><td style="text-align:right">'+pct(f[1],nn)+'%</td></tr>';});
   ft+='</table><div style="font-size:12px;color:#6b7280;margin-top:6px">Categories overlap; a review can fire several. n(non-topography) = '+nn+'.</div>';
   var cf=document.getElementById('cohort-focus'); if(cf) cf.innerHTML=ft;
+})();
+</script>
+<script>
+(function enableCollapsibleDashboard(){
+  var titles=['Review universe','Custom query — combine filters','Query results','Single-code prevalences','Engagement cohorts — sentiment & focus'];
+  var cards=document.querySelectorAll('.container > .card');
+  cards.forEach(function(card,index){
+    var title=titles[index]||('Section '+(index+1));
+    var heading=card.querySelector(':scope > h2, :scope > .section-title > h2');
+    if(heading){
+      title=heading.textContent.trim();
+      var headingContainer=heading.closest('.section-title');
+      if(headingContainer && headingContainer.parentElement===card) headingContainer.remove();
+      else heading.remove();
+    }
+    var content=document.createElement('div');
+    content.className='collapsible-content'+(card.id==='universe-toggle'?' universe-controls':'');
+    while(card.firstChild) content.appendChild(card.firstChild);
+    var button=document.createElement('button');
+    button.type='button';
+    button.className='collapsible-header';
+    button.setAttribute('aria-expanded','true');
+    button.innerHTML='<span class="collapsible-title">'+escHtml(title)+'</span><span class="collapsible-state">Hide</span>';
+    button.addEventListener('click',function(){
+      var collapsed=!content.hidden;
+      content.hidden=collapsed;
+      card.classList.toggle('is-collapsed',collapsed);
+      button.setAttribute('aria-expanded',String(!collapsed));
+      button.querySelector('.collapsible-state').textContent=collapsed?'Show':'Hide';
+    });
+    card.classList.add('collapsible-card');
+    if(card.id==='universe-toggle') card.style.display='block';
+    card.appendChild(button);
+    card.appendChild(content);
+  });
 })();
 </script>
 
